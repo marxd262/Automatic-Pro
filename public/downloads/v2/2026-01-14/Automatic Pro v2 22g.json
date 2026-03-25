@@ -1,0 +1,110 @@
+{
+  "label": "Automatic Pro v2 22g",
+  "type": "pro",
+  "description": "This profile is designed to automatically regulate the pressure. If using time: stop manually / change last duration",
+  "temperature": 91,
+  "utility": false,
+  "phases": [
+    {
+      "name": "Auto Pre-Infusion",
+      "phase": "preinfusion",
+      "valve": 1,
+      "duration": 10,
+      "temperature": 0,
+      "transition": {
+        "type": "instant",
+        "duration": 0,
+        "adaptive": true
+      },
+      "pump": {
+        "target": "flow",
+        "pressure": 2,
+        "flow": 20
+      },
+      "targets": [
+        {
+          "type": "volumetric",
+          "operator": "gte",
+          "value": 1
+        },
+        {
+          "type": "pumped",
+          "operator": "gte",
+          "value": 36
+        }
+      ]
+    },
+    {
+      "name": "Auto Bloom",
+      "phase": "preinfusion",
+      "valve": 1,
+      "duration": 6,
+      "temperature": 0,
+      "transition": {
+        "type": "instant",
+        "duration": 0,
+        "adaptive": true
+      },
+      "pump": {
+        "target": "flow",
+        "pressure": 2,
+        "flow": 2.2
+      },
+      "targets": [
+        {
+          "type": "volumetric",
+          "operator": "gte",
+          "value": 1.5
+        }
+      ]
+    },
+    {
+      "name": "Auto Ramp",
+      "phase": "brew",
+      "valve": 1,
+      "duration": 6,
+      "temperature": 0,
+      "transition": {
+        "type": "instant",
+        "duration": 0,
+        "adaptive": true
+      },
+      "pump": {
+        "target": "flow",
+        "pressure": 12,
+        "flow": 2.2
+      },
+      "targets": [
+        {
+          "type": "volumetric",
+          "operator": "gte",
+          "value": 13
+        }
+      ]
+    },
+    {
+      "name": "Auto Brew",
+      "phase": "brew",
+      "valve": 1,
+      "duration": 120,
+      "temperature": 0,
+      "transition": {
+        "type": "instant",
+        "duration": 0,
+        "adaptive": true
+      },
+      "pump": {
+        "target": "flow",
+        "pressure": 9,
+        "flow": 2.2
+      },
+      "targets": [
+        {
+          "type": "volumetric",
+          "operator": "gte",
+          "value": 44
+        }
+      ]
+    }
+  ]
+}

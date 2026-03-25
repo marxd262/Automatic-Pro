@@ -1,0 +1,136 @@
+[
+  {
+    "id": "v2",
+    "slug": "v2",
+    "displayName": "Automatic Pro v2",
+    "futureDisplayName": "Automatic Pro v2",
+    "status": "stable",
+    "summary": "The current stable version, proven and well tested.",
+    "imageHint": "espresso",
+    "builds": [
+      {
+        "buildVersion": "2026-01-14",
+        "releaseDate": "2026-01-14",
+        "isLatest": true,
+        "notes": "Current stable release with the full v2 dose lineup.",
+        "downloads": [
+          {
+            "label": "9g",
+            "dose": "9g",
+            "variant": "Standard V-shape basket",
+            "file": "Automatic Pro v2 9g.json",
+            "temperatureC": 91,
+            "notes": "Optimized for low flow and tested the least."
+          },
+          {
+            "label": "15g",
+            "dose": "15g",
+            "variant": "Standard basket",
+            "file": "Automatic Pro v2 15g.json",
+            "temperatureC": 91,
+            "notes": ""
+          },
+          {
+            "label": "18g",
+            "dose": "18g",
+            "variant": "Standard basket",
+            "file": "Automatic Pro v2 18g.json",
+            "temperatureC": 91,
+            "notes": ""
+          },
+          {
+            "label": "20g",
+            "dose": "20g",
+            "variant": "Standard or HE basket",
+            "file": "Automatic Pro v2 20g.json",
+            "temperatureC": 91,
+            "notes": ""
+          },
+          {
+            "label": "22g",
+            "dose": "22g",
+            "variant": "Standard or HE basket",
+            "file": "Automatic Pro v2 22g.json",
+            "temperatureC": 91,
+            "notes": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "vit3",
+    "slug": "vit3",
+    "displayName": "Automatic Pro vIT3",
+    "futureDisplayName": "Automatic Pro v3",
+    "status": "testing",
+    "summary": "The current in-testing version with ongoing updates and basket-specific variants.",
+    "imageHint": "espresso",
+    "builds": [
+      {
+        "buildVersion": "vIT3_0_29_2",
+        "releaseDate": "2026-03-25",
+        "isLatest": true,
+        "notes": "Minor testing update for the 18g Step-Down branch.",
+        "downloads": [
+          {
+            "label": "18g Step-Down",
+            "dose": "18g",
+            "variant": "Step-Down basket",
+            "file": "Automatic Pro 18g [Step-Down] vIT3_0_29_2.json",
+            "temperatureC": 89,
+            "notes": "Optional testing variant tuned for step-down baskets."
+          }
+        ]
+      },
+      {
+        "buildVersion": "vIT3_0_29_1",
+        "releaseDate": "2026-03-25",
+        "isLatest": false,
+        "notes": "Minor testing update for the core 18g branch.",
+        "downloads": [
+          {
+            "label": "18g",
+            "dose": "18g",
+            "variant": "Standard basket",
+            "file": "Automatic Pro 18g vIT3_0_29_1.json",
+            "temperatureC": 89,
+            "notes": ""
+          }
+        ]
+      },
+      {
+        "buildVersion": "vIT3_0_29",
+        "releaseDate": "2026-03-25",
+        "isLatest": false,
+        "notes": "Base 0.29 testing build for the remaining currently published variants.",
+        "downloads": [
+          {
+            "label": "20g",
+            "dose": "20g",
+            "variant": "Standard basket",
+            "file": "Automatic Pro 20g vIT3_0_29.json",
+            "temperatureC": 89,
+            "notes": ""
+          },
+          {
+            "label": "21g",
+            "dose": "21g",
+            "variant": "Standard basket",
+            "file": "Automatic Pro 21g vIT3_0_29.json",
+            "temperatureC": 89,
+            "notes": ""
+          },
+          {
+            "label": "21g Spring Lever",
+            "dose": "21g",
+            "variant": "Spring Lever basket",
+            "file": "Automatic Pro 21g [Spring Lever] vIT3_0_29.json",
+            "temperatureC": 89,
+            "notes": "Uses pressure instead of flow during the main extraction. Helpful if you have trouble maintaining stable pressure."
+          }
+        ]
+      }
+    ]
+  }
+]

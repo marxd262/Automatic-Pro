@@ -1,0 +1,81 @@
+---
+import type { Family } from '../lib/releaseData';
+import { getCurrentDownloads, getDownloadPath, getLatestBuild } from '../lib/releaseData';
+
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith('/') ? rawBase : `${rawBase}/`;
+
+interface Props {
+  family: Family;
+}
+
+const { family } = Astro.props as Props;
+const latestBuild = getLatestBuild(family);
+const currentDownloads = getCurrentDownloads(family);
+---
+
+<section class="ap-family-hero">
+  <div>
+    <div class="ap-pill-row">
+      <span class:list={['ap-pill', family.status === 'stable' ? 'ap-pill-stable' : 'ap-pill-testing']}>
+        {family.status === 'stable' ? 'Stable' : 'In testing'}
+      </span>
+    </div>
+    <p class="ap-family-summary">{family.summary}</p>
+    {
+      family.futureDisplayName !== family.displayName && (
+        <p class="ap-family-note">This family will be promoted to {family.futureDisplayName} once testing is complete.</p>
+      )
+    }
+    <p class="ap-family-note">
+      {family.status === 'stable'
+        ? `Current stable build: ${latestBuild.buildVersion}.`
+        : `Latest family update: ${latestBuild.buildVersion}. Variants that were not touched in the latest update keep their older build number until their next revision.`}
+    </p>
+  </div>
+
+  <figure class="ap-photo-card ap-photo-card-tight">
+    <img alt="Espresso in a cup" class="ap-photo-card-image" src={`${base}images/espresso.jpg`} />
+  </figure>
+</section>
+
+<section class="ap-family-section">
+  <div class="ap-section-header ap-section-header-stack">
+    <div>
+      <p class="ap-kicker">Downloads</p>
+      <h2>Dose</h2>
+    </div>
+    <p>
+      {family.status === 'stable'
+        ? 'Current files for the active stable build.'
+        : 'Latest available file for each currently published variant.'}
+    </p>
+  </div>
+
+  <ul class="ap-download-list">
+    {
+      currentDownloads.map((download) => (
+        <li class="ap-download-row">
+          <div class="ap-download-copy">
+            <div class="ap-download-title-row">
+              <h3>{download.label}</h3>
+              {family.status === 'testing' && <span class="ap-build-tag">{download.buildVersion}</span>}
+            </div>
+            <p class="ap-download-variant">
+              {download.variant} · {download.temperatureC}°C default
+            </p>
+            {download.notes && <p class="ap-download-notes">{download.notes}</p>}
+          </div>
+
+          <a
+            class="ap-button ap-button-primary"
+            download
+            href={`${base}${getDownloadPath(family.slug, download.buildVersion, download.file)}`}
+          >
+            Download JSON
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</section>

@@ -1,0 +1,66 @@
+---
+import type { Family } from '../lib/releaseData';
+import { getDownloadPath, sortBuilds } from '../lib/releaseData';
+
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith('/') ? rawBase : `${rawBase}/`;
+
+interface Props {
+  family: Family;
+}
+
+const { family } = Astro.props as Props;
+const builds = sortBuilds(family.builds);
+const formatter = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<section class="ap-family-section">
+  <div class="ap-section-header ap-section-header-stack">
+    <div>
+      <p class="ap-kicker">History</p>
+      <h2>Build history</h2>
+    </div>
+    <p>{family.status === 'stable' ? 'All published stable builds.' : 'All published testing builds.'}</p>
+  </div>
+
+  <div class="ap-build-history">
+    {
+      builds.map((build) => (
+        <article class="ap-build-card">
+          <div class="ap-build-head">
+            <div>
+              <h3>{build.buildVersion}</h3>
+              <p class="ap-build-date">{formatter.format(new Date(build.releaseDate))}</p>
+            </div>
+            {build.notes && <p class="ap-build-notes">{build.notes}</p>}
+          </div>
+
+          <ul class="ap-build-downloads">
+            {
+              build.downloads.map((download) => (
+                <li class="ap-build-download-row">
+                  <div>
+                    <strong>{download.label}</strong>
+                    <p>{download.variant}</p>
+                    {download.notes && <p class="ap-build-download-note">{download.notes}</p>}
+                  </div>
+                  <a
+                    class="ap-button ap-button-secondary"
+                    download
+                    href={`${base}${getDownloadPath(family.slug, build.buildVersion, download.file)}`}
+                  >
+                    Download JSON
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </article>
+      ))
+    }
+  </div>
+</section>

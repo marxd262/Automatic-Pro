@@ -1,0 +1,28 @@
+---
+import VersionCards from './VersionCards.astro';
+import { releaseFamilies } from '../lib/releaseData';
+
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith('/') ? rawBase : `${rawBase}/`;
+---
+
+<section class="ap-home-shell">
+  <div class="ap-home-copy">
+    <p class="ap-kicker">Automatic Pro</p>
+    <p class="ap-home-line">
+      Automatic Pro is a GaggiMate Pro profile family built to automate pre-infusion, bloom, and extraction with
+      clever phase stops.
+    </p>
+  </div>
+
+  <figure class="ap-photo-card">
+    <img alt="Espresso in a cup" class="ap-photo-card-image" src={`${base}images/espresso.jpg`} />
+  </figure>
+</section>
+
+<VersionCards families={releaseFamilies} />
+
+<p class="ap-home-note">
+  Discussion on
+  <a href="https://discord.com/invite/3JcR5csD4E" rel="noreferrer" target="_blank">GaggiMate Discord</a>.
+</p>

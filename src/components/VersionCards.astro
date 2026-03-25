@@ -1,0 +1,32 @@
+---
+import type { Family } from '../lib/releaseData';
+
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith('/') ? rawBase : `${rawBase}/`;
+
+interface Props {
+  families: Family[];
+}
+
+const { families } = Astro.props as Props;
+---
+
+<div class="ap-version-grid">
+  {
+    families.map((family) => (
+      <a class="ap-version-card" href={`${base}${family.slug}/`}>
+        <div class="ap-pill-row">
+          <span class:list={['ap-pill', family.status === 'stable' ? 'ap-pill-stable' : 'ap-pill-testing']}>
+            {family.status === 'stable' ? 'Stable' : 'In testing'}
+          </span>
+        </div>
+        <h2>{family.displayName}</h2>
+        <p>{family.summary}</p>
+        {family.futureDisplayName !== family.displayName && (
+          <p class="ap-card-note">Will become {family.futureDisplayName} after testing.</p>
+        )}
+        <span class="ap-card-link">Go to version</span>
+      </a>
+    ))
+  }
+</div>
