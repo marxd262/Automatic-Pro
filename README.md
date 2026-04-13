@@ -4,16 +4,11 @@ Docs site: https://modsmthng.github.io/Automatic-Pro/
 
 GaggiMate: https://github.com/jniebuhr/gaggimate
 
-## Upload workflow
+## How to add a Profile
 
-New profile uploads now go through `incoming/` and a GitHub Action.
-
-1. **Create a branch** from `main`. _Do not use the main branch, otherwise the script will not be executed._
-2. Drop new JSON files into `incoming/`.
-3. Push the branch.
-4. _The `Ingest Uploaded Profiles` workflow validates the files, moves them into `public/downloads/`, updates `src/data/releases.json`, and opens or updates a PR to `main`._
-
-`main` does not ingest files directly. The automation only processes uploads from non-`main` branches.
+1. Drop new JSON files into `incoming/`.
+2. Push them to `main`.
+3. The `Ingest Uploaded Profiles` workflow validates the files, moves them into `public/downloads/`, updates `src/data/releases.json`, and clears `incoming/` again.
 
 ## Filename format
 `vIT3` / `v3`
@@ -50,6 +45,30 @@ Examples:
 - `Automatic Pro Soup vIT3_0_29_5.json`
 - `Automatic Pro 18g vIT3_0_29_1.json` for legacy untagged main-slot files
 
+`LAb`
+
+Format:
+
+- `Automatic Pro <dose> [<batch name><optional extra info>] LAb0_1.json`
+- `Automatic Pro <dose> <custom name> LAb0_1.json`
+
+`LAb` uses the same batch names and sorting rules as `vIT3`.
+
+Examples:
+
+- `Automatic Pro 18g [Direct Lever] LAb0_1.json`
+- `Automatic Pro 18g [Spring Lever] LAb0_1.json`
+- `Automatic Pro 20g [Adaptive Pressure] LAb0_1.json`
+- `Automatic Pro 20g [User Profile, Extra Strong] LAb0_1.json`
+
+`Pure Flow`
+
+Format:
+
+- `Pure Flow (10-20g).json`
+- `Pure Flow 5-10g.json`
+
+`Pure Flow` does not use a build suffix in the filename.
 
 `v2`
 
@@ -65,9 +84,11 @@ Examples:
 
 
 
-For `v2`, the workflow creates a build named with the current Berlin date, for example `2026-03-26`.
-
 For `vIT3`/`v3`, the build version comes from the filename and partial updates only replace the matching slot.
+
+For `LAb`, the build version also comes from the filename, for example `LAb0_1`.
+
+For `v2` and `Pure Flow`, the workflow creates a build named with the current Berlin date, for example `2026-03-26`.
 
 `[User Profile]` is meant for profiles that differ from the main profile schemas or are small variations of an existing profile or variation.
 

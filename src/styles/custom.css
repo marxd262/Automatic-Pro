@@ -152,6 +152,7 @@ h4,
 
 .ap-home-note,
 .ap-family-summary,
+.ap-version-summary,
 .ap-family-note,
 .ap-download-variant,
 .ap-download-notes,
@@ -167,6 +168,21 @@ h4,
 
 .ap-home-note {
   margin-top: 1rem;
+}
+
+.ap-version-summary p,
+.ap-family-summary p {
+  margin: 0.45rem 0 0;
+}
+
+.ap-version-summary p:first-child,
+.ap-family-summary p:first-child {
+  margin-top: 0;
+}
+
+.ap-version-summary strong,
+.ap-family-summary strong {
+  color: var(--ap-ink);
 }
 
 .ap-home-video {
@@ -210,6 +226,15 @@ h4,
 
 .ap-version-card h2 {
   margin: 0.65rem 0 0.4rem;
+}
+
+.ap-version-featured-line {
+  margin: 0.1rem 0 0.45rem;
+  font-family: 'Fraunces', serif;
+  font-size: 1.08rem;
+  line-height: 1.1;
+  font-weight: 700;
+  color: var(--ap-ink);
 }
 
 .ap-card-note {
